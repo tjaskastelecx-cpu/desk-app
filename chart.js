@@ -77,7 +77,7 @@
         used.push(my);
         ctx.font = "11px -apple-system, sans-serif";
         ctx.fillStyle = m.kind === "bought" ? BLUE : (m.kind === "stopped" ? RED : GREEN);
-        const label = m.title || m.value || "";
+        const label = m.title || m.subtitle || m.value || "";
         ctx.fillText(label, Math.min(w - 80, Math.max(0, mx - 20)), my);
       });
     }

@@ -30,6 +30,17 @@
     return;
   }
 
+  function applyDeepLink() {
+    const h = location.hash || "";
+    const au = h.match(/[&]audit=([A-Za-z0-9]+)/);
+    const co = h.match(/[&]coin=([A-Za-z0-9]+)/);
+    const tb = h.match(/[&]tab=(home|agents|activity|account)/);
+    if (au) view = { kind: "audit", mint: au[1] };
+    else if (co) view = { kind: "coin", mint: co[1] };
+    if (tb) tab = tb[1];
+  }
+  applyDeepLink();
+
   async function pull(rel) {
     const r = await fetch(dataUrl(rel), { cache: "no-store" });
     if (!r.ok) throw new Error(String(r.status));
@@ -111,6 +122,7 @@
     document.getElementById("go-account").onclick = () => { tab = "account"; syncTabs(); render(); };
     document.querySelectorAll(".ranges button").forEach((b) => b.onclick = () => { range = b.dataset.range; render(); });
     document.getElementById("search").addEventListener("change", onSearch);
+    root.querySelectorAll(".activity-row").forEach((b) => b.onclick = () => openRow(b.dataset.kind, b.dataset.mint));
   }
 
   function drawHomeChart() {
@@ -166,7 +178,7 @@
         `<div class="activity-row"><div><div>${esc((d.mint||"").slice(0,8))} · ${esc(d.verdict||"")}</div><div class="sub">${esc(d.reason||"")} · ${(d.ts||"").slice(11,16)}</div></div></div>`
       ).join("");
       return `<div class="agent-row"><div><div>${cap(a.name)}</div><div class="sub">${a.status} · ${a.count||0} today</div></div></div>${dec}`;
-    }).join("") || `<div class="empty">No coin taken apart yet</div>`;
+    }).join("") || `<div class="empty">No agents yet</div>`;
   }
 
   function renderAccount(root) {
