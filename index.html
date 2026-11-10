@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#000000">
+  <title>Grok Bot</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div id="app">
+    <div id="gate" class="gate hidden">Open this app from the link you were sent. It keeps a private path on this device.</div>
+    <div id="err" class="err hidden"></div>
+    <div id="screen"></div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="home" class="on">Home</button>
+      <button data-tab="agents">Agents</button>
+      <button data-tab="activity">Activity</button>
+      <button data-tab="account">Account</button>
+    </nav>
+  </div>
+  <script src="chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
