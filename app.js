@@ -173,12 +173,14 @@
 
   function renderAgents(root) {
     const agents = (state && state.agents) || [];
-    root.innerHTML = nav("Agents") + agents.map((a) => {
-      const dec = (a.decisions || []).slice(0, 20).map((d) =>
+    const body = agents.map((a) => {
+      const dec = (a.decisions || []).slice(0, 3).map((d) =>
         `<div class="activity-row"><div><div>${esc((d.mint||"").slice(0,8))} · ${esc(d.verdict||"")}</div><div class="sub">${esc(d.reason||"")} · ${(d.ts||"").slice(11,16)}</div></div></div>`
       ).join("");
-      return `<div class="agent-row"><div><div>${cap(a.name)}</div><div class="sub">${a.status} · ${a.count||0} today</div></div></div>${dec}`;
-    }).join("") || `<div class="empty">No agents yet</div>`;
+      const pills = a.name === "risk" ? `<div class="pills"><span class="pill stop">stop -${a.stop_pct}%</span><span class="pill trail">trail ${a.trail_pct}%</span></div>` : "";
+      return `<div class="agent-block"><div class="agent-row"><div><div>${cap(a.name)}</div><div class="sub">${esc(a.label||a.status)} · ${a.status} · ${a.count||0} today</div></div></div>${pills}${dec}</div>`;
+    }).join("");
+    root.innerHTML = nav("Agents") + (body || `<div class="empty">No agents yet</div>`);
   }
 
   function renderAccount(root) {
