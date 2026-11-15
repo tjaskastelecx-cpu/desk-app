@@ -1,1 +1,1 @@
-{"name":"auditor","decisions":[{"ts":"2026-11-10T17:50:19.986Z","mint":"HfYFjMKNZygfMC8LsQ8LtpPsPxEJoXJx4M6tqi75Hajo","verdict":"reject","reason":"freeze not revoked"}],"paused":false}
+{"name":"auditor","decisions":[{"ts":"2026-11-15T16:21:09.727Z","mint":"gMAX8oTSTawpaWtjaxrYFvCcmM15zC3Sd8nRmGApump","verdict":"reject","reason":"dev holds 79%"},{"ts":"2026-11-10T17:50:19.986Z","mint":"HfYFjMKNZygfMC8LsQ8LtpPsPxEJoXJx4M6tqi75Hajo","verdict":"reject","reason":"freeze not revoked"}],"paused":false}
